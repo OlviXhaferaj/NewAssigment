@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from 'react';
+import {
+  BrowserRouter,
+  NavLink,
+  Route,
+  Routes
+}from 'react-router-dom';
+import Home from "./Components/Home";
+import Number from "./Components/Number";
+import Hello from "./Components/Hello";
+import Lastpage from "./Components/Lastpage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+  return(
+      <BrowserRouter >
+        <NavLink to={"/home"}>Home</NavLink>
+        <NavLink to={"/Number/4"}>4</NavLink>
+        <NavLink to={"/Hello/hello"}>hello</NavLink>
+        <NavLink to={"/Lastpage/hello/yellow/blue"}>Last page</NavLink>
+      <Routes>
+        <Route  path={"/home"} element={<Home />}/>
+        <Route path="/Number/:num" element={<Number/>}/>
+        <Route path="/Hello/:word" element={<Hello/>}/>
+        <Route path={"/Lastpage/:tword/:color/:backgroundColor"} element={<Lastpage />}/>
+      </Routes>
+      </BrowserRouter>
+  )
+}
 export default App;
